@@ -18,7 +18,18 @@ from django.urls import path, include
 from rest_framework_swagger.views import get_swagger_view
 from webapp import views, urls
 
-schema_view = get_swagger_view(title='Sample Django Application')
+# urlpatterns1 = [
+#     url(r'^', include(router.urls)),
+#     url(r'^test/', include('test.urls')),
+#     url(r'^test1/', Test2.as_view()),
+# ]
+
+
+urlpatterns1 = [
+    path('', include(urls.router.urls))
+]
+
+schema_view = get_swagger_view(title='Sample Django Application', patterns=urlpatterns1)
 
 urlpatterns = [
     path('admin/', admin.site.urls),

@@ -11,7 +11,7 @@ This project is a study case of [Python] on how to build an example of an API us
 ## Setting up the environment
 
 ```sh
-virtualenv --no-site-packages --distribute .env && source .env/bin/activate && pip install -r requirements.txt
+virtualenv .env && source .env/bin/activate && pip install -r requirements.txt
 ```
 
 > To exit the virtual environment at any time, just type `deactivate`. For more information see the [venv] documentation.
@@ -29,7 +29,7 @@ python manage.py migrate
 python manage.py runserver
 ```
 
-[Swagger] is available at http://localhost:800/docs
+[Swagger] page is available at http://localhost:800/docs
 
 > Needed this fix: https://github.com/encode/django-rest-framework/issues/6809#issuecomment-593627748
 
