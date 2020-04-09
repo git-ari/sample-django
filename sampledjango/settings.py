@@ -38,8 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'rest_framework_swagger',
-    'webapp'
+    'drf_yasg',
+    'webapp',
+    'oauth2_provider'
 ]
 
 MIDDLEWARE = [
@@ -122,12 +123,37 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-REST_FRAMEWORK = {'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'}
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
+    )
+}
 
-# SWAGGER_SETTINGS = {
-#     'SHOW_REQUEST_HEADERS': True,
-#     'SUPPORTED_SUBMIT_METHODS': [
-#         'get',
-#         'post',
-#     ]
-# }
+OAUTH2_PROVIDER = {
+    # this is the list of available scopes
+    'SCOPES': {'read': 'Read scope', 'write': 'Write scope', 'groups': 'Access to your groups'}
+}
+
+SWAGGER_SETTINGS = {
+    'USE_SESSION_AUTH': False,
+    'JSON_EDITOR': True,
+    'SECURITY_DEFINITIONS': {
+        'Sample Django - Swagger': {
+            'type': 'oauth2',
+            'authorizationUrl': '/o/authorize',
+            'tokenUrl': '/o/token/',
+            'flow': 'accessCode',
+            'scopes': {
+                'read groups': 'read groups',
+            },
+        }
+    },
+    'OAUTH2_REDIRECT_URL': 'http://localhost/static/drf-yasg/swagger-ui-dist/oauth2-redirect.html',
+    # 'OAUTH2_REDIRECT_URL': 'http://django-oauth-toolkit.herokuapp.com/consumer/exchange/',
+    'OAUTH2_CONFIG': {
+        'clientId': '3z5kN6ar6fbakanErvXrPKxkNMkkhVzVbyUR3gAp',
+        'clientSecret': 'nknAO1NC2XW4WUsRLBJJoCzBezRRbczsUVsnt4upi5M1doPDPtUZVLkkuytAkEN5I1WntwiNLTTZQIup7BXsEr3RFQblK6nkpPlRFhDNdKLqkXTHqgCoQjrLk7lLIacW',
+        'appName': 'sample-django',
+    },
+}

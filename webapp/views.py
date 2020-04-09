@@ -6,6 +6,8 @@ from rest_framework import permissions
 from rest_framework import renderers
 from rest_framework import viewsets
 from webapp.serializers import TodoListSerializer, ItemSerializer
+from oauth2_provider.views.generic import ProtectedResourceView
+from django.http import HttpResponse
 from rest_framework.parsers import JSONParser
 from django.http import HttpResponse, JsonResponse
 from rest_framework.response import Response
@@ -25,3 +27,7 @@ class ItemViewSet(viewsets.ModelViewSet):
     """
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
+
+class ApiEndpoint(ProtectedResourceView):
+    def get(self, request, *args, **kwargs):
+        return HttpResponse('Hello, OAuth2!')

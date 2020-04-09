@@ -1,6 +1,6 @@
 # sample-django
 
-This project is a study case of [Python] on how to build an example of an API using [Django]. It was used [Django REST Swagger] dependency to implement [Swagger]. For now, the main goal is to develop a CRUD application of a Todo List.
+This project is a study case of [Python] on how to build an example of an API using [Django]. It was used [drf-yasg] dependency to implement [Swagger]. For now, the main goal is to develop a CRUD application of a Todo List.
 
 ## Required software
 
@@ -29,9 +29,9 @@ python manage.py migrate
 python manage.py runserver
 ```
 
-[Swagger] page is available at http://localhost:800/docs
+[Swagger] page is available at http://localhost:8000/swagger
 
-> Needed this fix: https://github.com/encode/django-rest-framework/issues/6809#issuecomment-593627748
+> Needed this fix: https://github.com/encode/django-rest-framework/issues/6809#issuecomment-593627748Django REST Swagger
 
 ## License
 MIT
@@ -70,11 +70,12 @@ rm -r my-app/migrations
 python manage.py makemigrations
 python manage.py migrate
 ```
+Swagger + OAuth2 - https://github.com/Vigrond/django_oauth2_example/blob/master/settings.py
 
 [//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
 
 [Django]: <https://www.djangoproject.com/>
-[Django REST Swagger]: <https://django-rest-swagger.readthedocs.io/en/latest/>
+[drf-yasg]: <https://github.com/axnsan12/drf-yasg/>
 [Swagger]: <https://swagger.io/>
 [Python]: <https://www.python.org/>
 [venv]: <https://docs.python.org/3/library/venv.html>
